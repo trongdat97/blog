@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /blog-md/
+
+Sitemap: https://example.com/sitemap-index.xml
