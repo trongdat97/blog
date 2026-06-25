@@ -109,12 +109,14 @@ export default {
 
     const headers = new Headers(response.headers);
     // RFC 8288 Link headers for agent discovery
-    headers.append('Link', `</.well-known/api-catalog>; rel="api-catalog"`);
-    headers.append('Link', `</rss.xml>; rel="alternate"; type="application/rss+xml"; title="${SITE_NAME} RSS Feed"`);
-    headers.append('Link', `</sitemap-index.xml>; rel="sitemap"; type="application/xml"`);
+    headers.set('Link', [
+      `</.well-known/api-catalog>; rel="api-catalog"`,
+      `</rss.xml>; rel="alternate"; type="application/rss+xml"; title="${SITE_NAME} RSS Feed"`,
+      `</sitemap-index.xml>; rel="sitemap"; type="application/xml"`,
+    ].join(', '));
     headers.set('Vary', 'Accept');
-    // Content Signals — cho phép search/AI discovery, không cho phép AI training
     headers.set('Content-Signal', 'search=yes, ai-input=yes, ai-train=no');
+    headers.set('X-Worker', 'active'); // debug: xác nhận Worker đang chạy
 
     return new Response(response.body, {
       status: response.status,
