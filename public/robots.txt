@@ -2,4 +2,20 @@ User-agent: *
 Allow: /
 Disallow: /blog-md/
 
-Sitemap: https://example.com/sitemap-index.xml
+# AI crawlers — explicitly allowed for search/discovery
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://blog.datnv.online/sitemap-index.xml

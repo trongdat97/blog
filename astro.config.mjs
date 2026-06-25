@@ -11,7 +11,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://blog.datnv.online',
   markdown: {
     processor: unified({
       rehypePlugins: [
