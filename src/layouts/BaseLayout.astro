@@ -1,0 +1,29 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Blog cá nhân — DevOps, Kubernetes, Cloud' } = Astro.props;
+---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col text-gray-900">
+    <Header />
+    <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-8">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

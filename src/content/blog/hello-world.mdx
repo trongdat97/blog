@@ -1,0 +1,63 @@
+---
+title: "Xin chào thế giới!"
+description: "Bài viết đầu tiên trên blog cá nhân — giới thiệu về mục đích và các chủ đề tôi sẽ viết."
+pubDate: "2026-06-25"
+tags: ["astro", "blog", "devops"]
+draft: false
+---
+
+Chào mừng đến với blog của tôi! Đây là bài viết đầu tiên — nơi tôi chia sẻ những kinh nghiệm, ghi chú kỹ thuật và bài học trong quá trình làm việc.
+
+## Tôi viết về gì?
+
+Blog này tập trung vào các chủ đề:
+
+- **Kubernetes** — cấu hình, troubleshooting, tối ưu hóa resource
+- **CI/CD** — GitLab CI, ArgoCD, GitOps pattern
+- **Cloud & Infrastructure** — Viettel Cloud, Helm, NFS, monitoring
+- **Golang / Java** — các snippet và pattern hữu ích
+
+## Ví dụ code block
+
+Dưới đây là một Deployment YAML đơn giản:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+        - name: app
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+```
+
+Và lệnh kubectl để kiểm tra:
+
+```bash
+# Apply và theo dõi trạng thái pod
+kubectl apply -f deployment.yaml
+kubectl rollout status deployment/hello-world
+kubectl get pods -l app=hello-world
+```
+
+Hẹn gặp lại ở các bài viết tiếp theo!

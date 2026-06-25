@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 5);
+---
+<BaseLayout title="Blog cá nhân">
+  <section class="mb-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Xin chào!</h1>
+    <p class="text-lg text-gray-600">Blog cá nhân — nơi tôi chia sẻ về DevOps, Kubernetes, CI/CD và các công nghệ tôi đang làm việc.</p>
+  </section>
+  <section>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-6">Bài viết gần đây</h2>
+    <div class="space-y-4">
+      {posts.map(post => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          tags={post.data.tags}
+          slug={post.id.replace(/\.[^.]+$/, '')}
+        />
+      ))}
+    </div>
+    <div class="mt-8 text-center">
+      <a href="/blog" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        Xem tất cả bài viết
+      </a>
+    </div>
+  </section>
+</BaseLayout>
